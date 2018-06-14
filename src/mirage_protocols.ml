@@ -70,6 +70,10 @@ module type IP = sig
   val src: t -> dst:ipaddr -> ipaddr
   val set_ip: t -> ipaddr -> unit io
   val get_ip: t -> ipaddr list
+  val get_network: t -> prefix list
+  val get_gateway: t -> ipaddr list
+  val set_config: ?ip:ipaddr -> ?network:prefix -> ?gateway:ipaddr option -> t -> unit io
+
   type uipaddr
   val to_uipaddr: ipaddr -> uipaddr
   val of_uipaddr: uipaddr -> ipaddr option

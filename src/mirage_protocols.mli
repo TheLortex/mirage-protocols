@@ -147,6 +147,15 @@ module type IP = sig
    *  one IP address can be set at a time, so the list will always be of
    *  length 1 (and may be the default value, 0.0.0.0). *)
 
+  val get_network: t -> prefix list
+  (** Get the network mask configured for this interface. *)
+
+  val get_gateway: t -> ipaddr list
+  (** Get the gateway configured for this interface.*)
+
+  val set_config: ?ip:ipaddr -> ?network:prefix -> ?gateway:ipaddr option -> t -> unit io
+  (** Update IP, netmask and gateway for this interface. *)
+
   type uipaddr
   (** The type for universal IP addresses. It supports all the
       possible versions. *)
